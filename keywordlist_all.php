@@ -5,9 +5,6 @@ $keywords = array();
 $index = 0;
 
 
-//execute the SQL query and return records
-//$result = mysql_query("SELECT * FROM tblPatternMetadata");
-
 $querykey = "SELECT SUBSTRING_INDEX(SUBSTRING_INDEX(t.sKeywords, ',', n.n), ',', -1) tags, count(*) as counts FROM vwPattern_copy t CROSS JOIN (SELECT a.N + b.N * 10 + 1 n FROM (SELECT 0 AS N UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) a,(SELECT 0 AS N UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) b ORDER BY n) n WHERE n.n <= 1 + (LENGTH(t.sKeywords) - LENGTH(REPLACE(t.sKeywords, ',', ''))) group by tags order by tags";
 
 $keywords = range('A','Z');
